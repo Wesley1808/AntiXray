@@ -81,8 +81,10 @@ public abstract class ClientboundLevelChunkWithLightPacketMixin implements IChun
         ChunkPacketInfo<BlockState> packetInfo = chunkPacketInfoLocalRef.get();
         ClientboundLevelChunkWithLightPacket packet = (ClientboundLevelChunkWithLightPacket) (Object) this;
 
-        packetInfo.setChunkPacket(packet);
-        controllerLocalRef.get().modifyBlocks(packet, chunkPacketInfoLocalRef.get());
+        if (packetInfo != null) {
+            packetInfo.setChunkPacket(packet);
+        }
+        controllerLocalRef.get().modifyBlocks(packet, packetInfo);
     }
 
     @ModifyArg(
